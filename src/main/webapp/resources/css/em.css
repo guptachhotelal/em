@@ -1,0 +1,89 @@
+body {
+    overflow-y: scroll;
+    font-size: 14px;
+}
+
+table {
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    border-spacing: 0;
+}
+
+th {
+    background: #D6F5F5;
+    text-align: center;
+}
+
+.dataTables_filter {
+    float: left;
+}
+
+.dataTables_filter input {
+    min-width: 300px;
+}
+
+.noWapColumn {
+    text-align: center;
+    white-space: nowrap;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+#tblList {
+    box-shadow: 4px 4px 4px grey;
+}
+
+#tblList_filter {
+    margin-left: 5px;
+}
+
+#tblList_processing {
+    position: fixed;
+    width: 200px;
+    height: 80px;;
+}
+
+.dt-button.link {
+    border: 0px;
+    background: transparent;
+    padding: 4px 4px 4px 4px;
+}
+
+.navbar-default {
+    background-color: white;
+    border-color: transparent;
+}
+
+.navbar {
+    margin-bottom: 4px;
+    min-height: 36px;
+}
+
+.navbar-brand {
+    padding-bottom: 2px;
+    padding-top: 5px;
+}
+
+.navbar-nav>li>a {
+    padding-bottom: 2px;
+    padding-top: 5px;
+}
+
+.navbar-default .navbar-nav>.open>a, 
+.navbar-default .navbar-nav>.open>a:focus, 
+.navbar-default .navbar-nav>.open>a:hover {
+    background-color: white;
+}
+
+.circle {
+    float: right; 
+    border-radius : 8px;
+    width: 8px;
+    height: 8px;
+    background: silver;
+    margin-top: -20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
