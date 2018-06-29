@@ -1,10 +1,8 @@
 package com.em.controller;
 
 import com.em.entity.Doctor;
-import com.em.entity.Event;
 import com.em.entity.SalesManager;
 import com.em.repository.DoctorRepository;
-import com.em.repository.EventRepository;
 import com.em.repository.SalesManagerRepository;
 import com.em.utils.Constants;
 import com.em.utils.Helper;
@@ -29,7 +27,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DoctorController {
 
-    
     @Resource
     private DoctorRepository doctorRepository;
     @Resource

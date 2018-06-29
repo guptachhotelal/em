@@ -14,13 +14,13 @@
                         <div class="form-group row">
                             <label for="userName" class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-6">
-                                <input name="userName" class="form-control" placeholder="User Name"/>
+                                <input type="text" name="userName" class="form-control" placeholder="User Name" value="admin"/>
                             </div>
                         </div>
                         <div class="form-group row">
-                            <label for="password" class="col-sm-2 col-form-label">Password</label>
+                            <label for="passWord" class="col-sm-2 col-form-label">Password</label>
                             <div class="col-sm-6">
-                                <input name="password" class="form-control" placeholder="Password"/>
+                                <input type="password" name="passWord" class="form-control" placeholder="Password" value="admin@123"/>
                             </div>
                         </div>
                         <label><a href="">Forgot Password</a></label>
@@ -30,7 +30,7 @@
                             </div>
                         </div>
 
-                        <%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" /> --%>
+                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
                     </fieldset>
                 </form>
             </div>

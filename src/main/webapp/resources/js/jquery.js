@@ -31,9 +31,9 @@ module.exports = global.document ?
         }
         return factory(w);
         };
-} else {
+        } else {
 factory(global);
-}
+        }
 
 // Pass this if window is not defined yet
 })(typeof window !== "undefined" ? window : this, function (window, noGlobal) {
@@ -427,7 +427,7 @@ var
         });
         if (typeof Symbol === "function") {
 jQuery.fn[ Symbol.iterator ] = arr[ Symbol.iterator ];
-}
+        }
 
 // Populate the class2type map
 jQuery.each("Boolean Number String Function Array Date RegExp Object Error Symbol".split(" "),

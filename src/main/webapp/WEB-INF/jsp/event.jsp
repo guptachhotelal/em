@@ -10,7 +10,7 @@
                 $("#name").focus();
                 $("#startTime").datetimepicker({
                     format: 'd-MMM-YYYY h:mm a',
-                    date:new Date(),
+                    date: new Date(),
                     sideBySide: true
                 });
 

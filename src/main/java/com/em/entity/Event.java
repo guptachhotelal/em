@@ -26,7 +26,7 @@ public class Event extends Audit {
     private String location;
     @Temporal(TemporalType.DATE)
     @Column(name = "start_time")
-    private Date  startTime;
+    private Date startTime;
 
     public int getId() {
         return id;
