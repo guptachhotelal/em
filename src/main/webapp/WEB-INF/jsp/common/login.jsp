@@ -8,7 +8,7 @@
     <body>
         <div class="container" style="height: 80%; display: table;">
             <div style="width: 40%; display: table-cell; vertical-align: middle;">
-                <form action="schedules.htm" method="post" class="form-signin" name="login" id="login">
+                <form action="login.htm" method="post" class="form-signin" name="login" id="login">
                     <fieldset style="border-radius: 15px;">
                         <legend style="font-weight: bold; margin-bottom: 40px;">Login</legend>
                         <div class="form-group row">
