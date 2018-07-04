@@ -13,7 +13,6 @@ import java.util.Optional;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +25,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,6 +33,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SchedulerController {
+    private static final List<Scheduler> SCHEDULES = new ArrayList<>(0);
 
     @Resource
     private EventRepository eventRepository;
@@ -43,7 +44,6 @@ public class SchedulerController {
     @Resource
     private SchedulerRepository schedulerRepository;
 
-    private static final List<Scheduler> SCHEDULES = new ArrayList<>();
 
     private int dummyCounter;
 

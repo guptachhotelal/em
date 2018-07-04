@@ -2,19 +2,28 @@
 <!DOCTYPE xml>
 <Configuration>
     <Properties>
-        <!-- <Property name="basePath">/programs/caselog/</Property> -->
-        <Property name="basePath">c:/data/logs/</Property>
+        <Property name="basePath">c:/data/log/</Property>
+        <Property name="logPattern">%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1}.%M(%F:%L) - %msg%n</Property>
     </Properties>
     <Appenders>
-        <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1}.%M(%F:%L) - %msg%n" />
+        <Console name="consoleLog" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${logPattern}" />
         </Console>
 
-        <RollingFile name="Info" fileName="${basePath}/log.log" filePattern="${basePath}/log_%d{yyyy_MM_dd}-%i.log">
-            <PatternLayout pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} [%-5level] [%t] %c{1}.%M(%F:%L) - %msg%n" />
+        <RollingFile name="infoLog" fileName="${basePath}/log.log" filePattern="${basePath}/log_%d{yyyy_MM_dd}-%i.log">
+            <LevelRangeFilter minLevel="INFO" maxLevel="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${logPattern}" />
             <Policies>
-                <!-- <TimeBasedTriggeringPolicy interval="1" modulate="true" /> -->
-                <SizeBasedTriggeringPolicy size="10 MB" />
+                <SizeBasedTriggeringPolicy size="10MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="10" />
+        </RollingFile>
+		
+        <RollingFile name="errorLog" fileName="${basePath}/log_err.log" filePattern="${basePath}/log_err%d{yyyy_MM_dd}-%i.log">
+            <LevelRangeFilter minLevel="ERROR" maxLevel="ERROR" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout pattern="${logPattern}" />
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB" />
             </Policies>
             <DefaultRolloverStrategy max="10" />
         </RollingFile>
@@ -23,13 +32,14 @@
 
     <Loggers>
 
-        <Logger name="org.springframework.web" level="all" additivity="false">
-            <AppenderRef ref="Console" />
-            <AppenderRef ref="Info" />
+        <Logger name="com.prop" additivity="false">
+            <AppenderRef ref="infoLog" />
+            <AppenderRef ref="errorLog" />
+            <AppenderRef ref="consoleLog" />
         </Logger>
 
-        <Root level="warn">
-            <AppenderRef ref="Console" />
+        <Root level="info">
+            <AppenderRef ref="consoleLog" />
         </Root>
 
     </Loggers>

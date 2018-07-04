@@ -2,19 +2,19 @@ package com.em.entity;
 
 import java.util.HashSet;
 import java.util.Set;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
-//https://www.boraji.com/spring-mvc-5-spring-security-5-hibernate-5-example
 @Entity
 @Table(name = "user")
-public class User {
+ public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -26,8 +26,9 @@ public class User {
     private String passWord;
     @Column(name = "active")
     private boolean active;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
-    private Set<UserRole> roles = new HashSet<>(0);
+    @ManyToMany
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Set<Role> roles = new HashSet<>(0);
 
     public int getId() {
         return id;
@@ -61,12 +62,11 @@ public class User {
         this.active = active;
     }
 
-    public Set<UserRole> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<UserRole> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
-
 }

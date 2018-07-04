@@ -27,12 +27,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class DoctorController {
 
+    private static final List<Doctor> DOCTORS = new ArrayList<>(0);
+
     @Resource
     private DoctorRepository doctorRepository;
     @Resource
     private SalesManagerRepository salesManagerRepository;
-
-    private static final List<Doctor> DOCTORS = new ArrayList<>();
 
     private int dummyCounter;
 
@@ -110,32 +110,5 @@ public class DoctorController {
     public Map<String, String> speciality() {
         return Helper.convertToMap(Helper.loadProperties(Constants.SPECIALITY_FILE_NAME));
     }
-
-//    @RequestMapping(value = "/doctorForm", method = RequestMethod.POST)
-//    public String addDoctorForm(@ModelAttribute("doctorForm") DoctorForm doctorForm, HttpServletRequest request, HttpServletResponse response) {
-//        if (doctorForm.getId() > 0) {
-//            doctorService.updateDoctorForm(doctorForm);
-//        } else {
-//            doctorService.createDoctorForm(doctorForm);
-//        }
-//        return "redirect:doctorList.htm";
-//    }
-//    @RequestMapping(value = "/doctorList")
-//    public String listDoctors(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-//        List<DoctorForm> doctorList = doctorService.listAllDoctorForm();
-//        map.addAttribute("doctorList", doctorList);
-//        return "doctorList";
-//    }
-//    @RequestMapping(value = "/doctorByTeam")
-//    public String listDoctorsByTeam(HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-//        String tid = request.getParameter("tid");
-//        if (tid != null && tid.trim().length() > 0) {
-//            long teamId = Long.parseLong(tid);
-//            TeamForm teamForm = teamService.findTeamFormById(teamId);
-//            List<DoctorForm> doctorList = doctorService.findDoctorFormsByTeam(teamId);
-//            map.addAttribute("teamForm", teamForm);
-//            map.addAttribute("doctorForms", doctorList);
-//        }
-//        return "doctorByTeam";
-//    }
+ 
 }
