@@ -1,23 +1,30 @@
 package com.em.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class EMController {
 
     private static final Logger LOGGER = LogManager.getLogger(EMController.class.getName());
+
+    @Resource
+    private AuthenticationManager authenticationManager;
+    @Resource
+    private UserDetailsService userDetailsService;
 
     @GetMapping(value = "login.htm")
     public String login(HttpServletRequest request, Model model) {
@@ -34,9 +41,14 @@ public class EMController {
         return "redirect:/login.htm?logout";
     }
 
-    @RequestMapping(value = {"/private.htm"}, method = RequestMethod.GET)
-    public String pri(Model model) {
-        return "private";
+    private void autologin(String username, String password) {
+        UserDetails userDetails = userDetailsService.loadUserByUsername(username);
+        UsernamePasswordAuthenticationToken upat = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
+        authenticationManager.authenticate(upat);
+        if (upat.isAuthenticated()) {
+            SecurityContextHolder.getContext().setAuthentication(upat);
+            LOGGER.debug(String.format("Auto login %s successfully!", username));
+        }
     }
 
     private String getPrincipal() {
@@ -47,4 +59,5 @@ public class EMController {
             return String.valueOf(principal);
         }
     }
+
 }
