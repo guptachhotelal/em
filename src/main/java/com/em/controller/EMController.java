@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class EMController {
 
+    //https://github.com/hellokoding/registration-login-spring-xml-maven-jsp-mysql
+    
     private static final Logger LOGGER = LogManager.getLogger(EMController.class.getName());
 
     @Resource
