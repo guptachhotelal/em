@@ -5,9 +5,10 @@
              xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
                  http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
-    <http auto-config="true">
-        <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
-        <intercept-url pattern="/schedules.htm" access="hasRole('ROLE_ADMIN')"/>
+    <http auto-config="true" use-expressions="true">
+        <intercept-url pattern="/resources/**" access="permitAll"/>
+        <intercept-url pattern="/login.htm" access="permitAll"/>
+        <intercept-url pattern="/**" access="isAuthenticated()"/>
         <form-login login-page="/login.htm" login-processing-url="/login.htm" default-target-url="/schedules.htm" authentication-failure-url="/login.htm?error" username-parameter="userName" password-parameter="passWord"/>
         <logout logout-success-url="/login.htm?logout" />
         <csrf disabled="true"/>
