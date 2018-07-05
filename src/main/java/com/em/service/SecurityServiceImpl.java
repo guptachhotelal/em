@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class SecurityServiceImpl implements SecurityService {
 
-    private static final Logger LOGGER = LogManager.getLogger(SecurityServiceImpl.class);
+    private static final Logger LOGGER = LogManager.getLogger(SecurityServiceImpl.class.getName());
 
     @Resource
     private AuthenticationManager authenticationManager;

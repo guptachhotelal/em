@@ -8,6 +8,8 @@ import javax.persistence.TemporalType;
 
 public abstract class Audit implements Serializable {
 
+    private static final long serialVersionUID = 1L;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "added_date")
     private Date addedDate;

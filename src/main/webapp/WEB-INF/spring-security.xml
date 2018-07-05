@@ -1,11 +1,10 @@
-<beans:beans xmlns="http://www.springframework.org/schema/security"  
-             xmlns:beans="http://www.springframework.org/schema/beans"  
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
-             xsi:schemaLocation="http://www.springframework.org/schema/beans  
-    http://www.springframework.org/schema/beans/spring-beans.xsd  
-    http://www.springframework.org/schema/security  
-    http://www.springframework.org/schema/security/spring-security.xsd">  
-    
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+             xmlns:beans="http://www.springframework.org/schema/beans"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+             xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                 http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
     <http auto-config="true">
         <intercept-url pattern="/" access="hasRole('ROLE_USER')"/>
         <intercept-url pattern="/schedules.htm" access="hasRole('ROLE_ADMIN')"/>
@@ -24,5 +23,6 @@
 
     <beans:bean id="encoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
         <beans:constructor-arg name="strength" value="11"/>
-    </beans:bean>  
+    </beans:bean>
+
 </beans:beans>

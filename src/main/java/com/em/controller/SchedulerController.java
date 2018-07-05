@@ -23,6 +23,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -33,17 +35,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class SchedulerController {
+
+    private static final Logger LOGGER = LogManager.getLogger(SchedulerController.class.getName());
+
     private static final List<Scheduler> SCHEDULES = new ArrayList<>(0);
 
     @Resource
     private EventRepository eventRepository;
-
     @Resource
     private DoctorRepository doctorRepository;
-
     @Resource
     private SchedulerRepository schedulerRepository;
-
 
     private int dummyCounter;
 

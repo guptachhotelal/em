@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class DoctorController {
+
+    private static final Logger LOGGER = LogManager.getLogger(DoctorController.class.getName());
 
     private static final List<Doctor> DOCTORS = new ArrayList<>(0);
 
@@ -110,5 +114,4 @@ public class DoctorController {
     public Map<String, String> speciality() {
         return Helper.convertToMap(Helper.loadProperties(Constants.SPECIALITY_FILE_NAME));
     }
- 
 }

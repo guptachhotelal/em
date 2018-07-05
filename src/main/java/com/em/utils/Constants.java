@@ -1,8 +1,15 @@
 package com.em.utils;
 
 import java.text.SimpleDateFormat;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public final class Constants {
+
+    private static final Logger LOGGER = LogManager.getLogger(Constants.class.getName());
+
+    private Constants() {
+    }
 
     public static final String SPECIALITY_FILE_NAME = "Speciality.properties";
     public static final String MODE_FILE_NAME = "Mode.properties";

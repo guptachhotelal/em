@@ -40,5 +40,6 @@
         <org-netbeans-modules-html-editor-lib.default-html-public-id>HTML5</org-netbeans-modules-html-editor-lib.default-html-public-id>
         <org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>Tomcat</org-netbeans-modules-maven-j2ee.netbeans_2e_hint_2e_deploy_2e_server>
         <org-netbeans-modules-javascript2-json.json_2e_comments>true</org-netbeans-modules-javascript2-json.json_2e_comments>
+        <netbeans.hint.jdkPlatform>JDK_1.8</netbeans.hint.jdkPlatform>
     </properties>
 </project-shared-configuration>

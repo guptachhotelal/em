@@ -11,6 +11,8 @@ import javax.persistence.Table;
 @Table(name = "sales_manager")
 public class SalesManager extends Audit {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

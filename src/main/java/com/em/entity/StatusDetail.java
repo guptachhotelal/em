@@ -2,6 +2,8 @@ package com.em.entity;
 
 public class StatusDetail {
 
+    private static final long serialVersionUID = 1L;
+
     private int total;
     private int arrived;
     private int departed;

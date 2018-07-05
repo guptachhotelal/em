@@ -14,6 +14,8 @@ import javax.persistence.TemporalType;
 @Table(name = "event")
 public class Event extends Audit {
 
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")

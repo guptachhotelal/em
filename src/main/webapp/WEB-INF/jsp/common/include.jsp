@@ -1,7 +1,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Event Manager</title>
-<link rel="shortcut icon" href="images/wings.png">
+<!--<link rel="shortcut icon" href="images/wings.png">-->
 
 <link type="text/css" rel="stylesheet" href="resources/css/bootstrap.min.css" />
 <link type="text/css" rel="stylesheet" href="resources/css/dataTables.bootstrap4.min.css" />

@@ -4,6 +4,8 @@ import com.em.entity.User;
 import com.em.repository.UserRepository;
 import java.util.Optional;
 import javax.annotation.Resource;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.security.core.userdetails.User.UserBuilder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -13,6 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
+
+    private static final Logger LOGGER = LogManager.getLogger(UserDetailsServiceImpl.class.getName());
 
     @Resource
     private UserRepository userRepository;
