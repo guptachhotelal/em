@@ -1,7 +1,7 @@
 package com.em.controller;
 
-import com.em.entity.SalesManager;
-import com.em.repository.SalesManagerRepository;
+import com.em.entity.User;
+import com.em.repository.UserRepository;
 import com.em.utils.Constants;
 import com.em.utils.Helper;
 import java.util.Map;
@@ -17,22 +17,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class SalesManagerController {
+public class UserController extends BaseController {
 
-    private static final Logger LOGGER = LogManager.getLogger(SalesManagerController.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(UserController.class.getName());
 
     @Resource
-    private SalesManagerRepository salesManagerRepository;
+    private UserRepository userRepository;
 
-    @RequestMapping(value = "/salesManager")
-    public String showForm(@ModelAttribute("salesManager") SalesManager salesManager, HttpServletRequest request, HttpServletResponse response, ModelMap map) {
-        Optional<SalesManager> oSalesManager = salesManagerRepository.findById(salesManager.getId());
-        if (oSalesManager.isPresent()) {
-            map.addAttribute("salesManager", oSalesManager.get());
+    @RequestMapping(value = "/user")
+    public String showForm(@ModelAttribute("user") User user, HttpServletRequest request, HttpServletResponse response, ModelMap map) {
+        Optional<User> oUser = userRepository.findById(user.getId());
+        if (oUser.isPresent()) {
+            map.addAttribute("user", oUser.get());
         } else {
-            map.addAttribute("salesManager", new SalesManager());
+            map.addAttribute("user", new User());
         }
-        return "salesmanager";
+        return "user";
     }
 
     @ModelAttribute("divisions")

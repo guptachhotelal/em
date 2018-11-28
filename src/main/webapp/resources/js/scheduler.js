@@ -57,7 +57,7 @@ $(function () {
                     window.open("doctor.htm");
                 }, "className": "link"},
             {"text": "<span accesskey='R'><b><u>R</u></b></span>SM", "action": function (e, dt, node, config) {
-                    window.open("salesManager.htm");
+                    window.open("user.htm");
                 }, "className": "link"},
             {"text": "Doctor <span accesskey='S'><b><u>S</u></b></span>chedule", "action": function (e, dt, node, config) {
                     window.open("scheduler.htm");

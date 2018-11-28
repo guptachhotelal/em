@@ -1,9 +1,9 @@
 package com.em.entity;
 
-import javax.persistence.CascadeType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.Objects;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +16,7 @@ import javax.persistence.Table;
 public class Doctor extends Audit {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -35,9 +35,10 @@ public class Doctor extends Audit {
     private String place;
     @Column(name = "category")
     private String category;
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    @JoinColumn(name = "sales_manager_id", nullable = false)
-    private SalesManager salesManager;
+    @OneToOne 
+    @JoinColumn(name = "user_id")
+    @JsonIgnore
+    private User user;
 
     public int getId() {
         return id;
@@ -103,12 +104,52 @@ public class Doctor extends Audit {
         this.category = category;
     }
 
-    public SalesManager getSalesManager() {
-        return salesManager;
+    public User getUser() {
+        return user;
     }
 
-    public void setSalesManager(SalesManager salesManager) {
-        this.salesManager = salesManager;
+    public void setUser(User user) {
+        this.user = user;
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Doctor other = (Doctor) obj;
+        if (this.id != other.id) {
+            return false;
+        }
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.code, other.code)) {
+            return false;
+        }
+        if (!Objects.equals(this.phone1, other.phone1)) {
+            return false;
+        }
+        if (!Objects.equals(this.phone2, other.phone2)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Doctor{" + "id=" + id + ", name=" + name + ", code=" + code + ", speciality=" + speciality + ", phone1=" + phone1 + ", phone2=" + phone2 + ", place=" + place + ", category=" + category + ", user=" + user + '}';
+    }
 }

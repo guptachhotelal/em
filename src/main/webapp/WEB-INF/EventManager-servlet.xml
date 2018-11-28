@@ -37,7 +37,7 @@
         <property name="jpaVendorAdapter">
             <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
                 <property name="generateDdl" value="false" />
-                <property name="showSql" value="false" />
+                <property name="showSql" value="true" />
             </bean>
         </property>
         <property name="jpaProperties">
@@ -45,6 +45,7 @@
                 <!--                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>-->
                 <prop key="hibernate.dialect">org.hibernate.dialect.H2Dialect</prop>
                 <prop key="javax.persistence.schema-generation.database.action">none</prop>
+                <prop key="spring.jpa.hibernate.naming.physical-strategy">org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl</prop>
                 <!--                <prop key="hibernate.ejb.use_class_enhancer">true</prop>-->
             </props>
         </property>

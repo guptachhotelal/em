@@ -33,45 +33,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(username);
         builder.disabled(!user.isActive());
         builder.password(user.getPassWord());
-        String[] roles = user.getRoles().stream().map(a -> a.getName()).toArray(String[]::new);
+        String[] roles = new String[]{user.getRole()};
         builder.authorities(roles);
         return builder.build();
-//        Set<GrantedAuthority> grantedAuthorities = new HashSet<>(0);
-//        user.getRoles().forEach(role -> {
-//            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-//        });
-//        return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), grantedAuthorities);
     }
-//    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = findUserbyUername(username);
-//        if (user == null) {
-//            throw new UsernameNotFoundException("User not found.");
-//        }
-//
-//        UserBuilder builder = org.springframework.security.core.userdetails.User.withUsername(username);
-//        builder.password(passwordEncoder.encode(user.getPassWord()));
-//        String[] roles = user.getRoles().stream().map(a -> a.getRole()).toArray(String[]::new);
-//        builder.authorities(roles);
-//        return builder.build();
-//    }
-//
-//    private User findUserbyUername(String username) {
-//        if (username.equalsIgnoreCase("admin")) {
-//            User user = new User();
-//            user.setUserName(username);
-//            user.setPassWord("admin123");
-//            final Role userRole = new Role();
-//            userRole.setId(1);
-//            userRole.setRole("ADMIN");
-//            userRole.setUser(user);
-//            user.setRoles(new HashSet<UserRole>() {
-//                {
-//                    add(userRole);
-//                }
-//            });
-//            return user;
-//        }
-//        return null;
-//    }
 }

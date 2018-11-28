@@ -12,6 +12,7 @@
         </script>
     </head>
     <body>
+        <%@include file="./common/header.jsp"%>
         <div class="container-fluid" style="width: 70%; margin-top: 5px;">
             <form:form modelAttribute="doctor" method="post" action="doctor.htm">
                 <form:hidden path="id"/>
@@ -28,7 +29,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="salesManager">Speciality</label>
+                    <label class="control-label col-sm-2" for="speciality">Speciality</label>
                     <div class="col-sm-10">
                         <form:select path="speciality" cssClass="form-control">
                             <form:option value="NA">Select</form:option>
@@ -68,12 +69,12 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="salesManager">Sales Manager</label>
+                    <label class="control-label col-sm-2" for="user">Sales Manager</label>
                     <div class="col-sm-10">
-                        <form:select path="salesManager.code" cssClass="form-control">
+                        <form:select path="user.code" cssClass="form-control">
                             <form:option value="-1">Select</form:option>
-                            <c:forEach items="${salesManagers}" var="salesManager">
-                                <form:option value="${salesManager.id}"><c:out value="${salesManager.name}"/></form:option>
+                            <c:forEach items="${users}" var="user">
+                                <form:option value="${user.id}"><c:out value="${user.name}"/></form:option>
                             </c:forEach>
                         </form:select>
                     </div>

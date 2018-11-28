@@ -20,6 +20,7 @@
         </script>
     </head>
     <body>
+        <%@include file="./common/header.jsp"%>
         <div class="container-fluid" style="width: 70%; margin-top: 5px;">
             <form:form modelAttribute="scheduler" action="scheduler.htm" method="post">
                 <form:hidden path="id"/>

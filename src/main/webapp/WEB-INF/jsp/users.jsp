@@ -12,8 +12,9 @@
         </script>
     </head>
     <body>
+        <%@include file="./common/header.jsp"%>
         <div class="container-fluid" style="width: 70%; margin-top: 5px;">
-            <form:form modelAttribute="salesManager">
+            <form:form modelAttribute="user">
                 <form:hidden path="id"/>
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Name</label>
@@ -34,7 +35,7 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label class="control-label col-sm-2" for="salesManager">Division</label>
+                    <label class="control-label col-sm-2" for="division">Division</label>
                     <div class="col-sm-10">
                         <form:select path="division" cssClass="form-control">
                             <form:option value="NA">Select</form:option>

@@ -6,6 +6,7 @@
         <script type="text/javascript" src="resources/js/doctor.js"></script>
     </head>
     <body>
+        <%@include file="./common/header.jsp"%>
         <div class="container-fluid" style="width: 80%; margin-top: 10px;">
             <table id="tblDoctor" class="table table-striped table-bordered dt-responsive nowrap">
                 <thead>

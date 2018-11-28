@@ -5,36 +5,37 @@ import com.em.entity.Event;
 import com.em.entity.Scheduler;
 import com.em.repository.DoctorRepository;
 import com.em.repository.EventRepository;
+import com.em.repository.SchedulerRepository;
 import com.em.utils.Constants;
 import com.em.utils.Helper;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import com.em.repository.SchedulerRepository;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-public class SchedulerController {
+public class SchedulerController extends BaseController {
 
     private static final Logger LOGGER = LogManager.getLogger(SchedulerController.class.getName());
 
@@ -47,10 +48,11 @@ public class SchedulerController {
     @Resource
     private SchedulerRepository schedulerRepository;
 
-    private int dummyCounter;
+  private final AtomicInteger dummyCounter = new AtomicInteger(0);
 
     @RequestMapping("schedules.htm")
-    public String listAll() {
+    public String listAll(HttpServletRequest request) {
+        request.getSession().setAttribute(Constants.LOGGED_USER, getUserName());
         return "schedules";
     }
 
@@ -67,9 +69,9 @@ public class SchedulerController {
         int sortColumn = request.getParameter("order[0][column]") == null ? 1 : Integer.parseInt(request.getParameter("order[0][column]"));
         boolean isAsc = "asc".equals(request.getParameter("order[0][dir]"));
         Map<String, Object> dataMap = new ConcurrentHashMap<>(0);
-        dataMap.put("draw", dummyCounter);
+        dataMap.put("draw", dummyCounter.incrementAndGet());
         dataMap.put("recordsTotal", SCHEDULES.size());
-        Map<Long, List<Scheduler>> map = filter(SCHEDULES, searchText, pageNumber, length, sortColumn, isAsc);
+        Map<Integer, List<Scheduler>> map = filter(SCHEDULES, searchText, pageNumber, length, sortColumn, isAsc);
         map.forEach((key, value) -> {
             dataMap.put("recordsFiltered", key);
             dataMap.put("data", value);
@@ -77,7 +79,7 @@ public class SchedulerController {
         return dataMap;
     }
 
-    public Map<Long, List<Scheduler>> filter(List<Scheduler> schedules, String searchText, int pageNumber, int length, int sortColumn, boolean asc) {
+    public Map<Integer, List<Scheduler>> filter(List<Scheduler> schedules, String searchText, int pageNumber, int length, int sortColumn, boolean asc) {
         Collections.sort(schedules, null);
         int idx = (pageNumber - 1) * length;
         List<Scheduler> fListSchedules = schedules.stream().filter(schedule -> {
@@ -91,8 +93,8 @@ public class SchedulerController {
                 pListSchedules.add(fListSchedules.get(idx));
             }
         }
-        Map<Long, List<Scheduler>> m = new HashMap<>(0);
-        m.put((long) fListSchedules.size(), pListSchedules);
+        Map<Integer, List<Scheduler>> m = new HashMap<>(0);
+        m.put(fListSchedules.size(), pListSchedules);
         return m;
     }
 
@@ -121,7 +123,7 @@ public class SchedulerController {
 
     @ModelAttribute("doctors")
     public List<Doctor> doctor() {
-        return doctorRepository.findAll();
+        return doctorRepository.findAllByUser(getUser());
     }
 
     @ModelAttribute("modes")

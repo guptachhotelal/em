@@ -9,7 +9,6 @@
             $(function () {
                 $("#name").focus();
                 $("#startTime").datetimepicker({
-                    format: 'd-MMM-YYYY h:mm a',
                     date: new Date(),
                     sideBySide: true
                 });
@@ -29,6 +28,7 @@
     <body>
         <label id="alert">Alert</label>
         <label id="confirm">Confirm</label>
+        <%@include file="./common/header.jsp"%>
         <div class="container-fluid" style="width: 70%; margin-top: 5px;">
             <form:form modelAttribute="event" method="post" action="event.htm">
                 <form:hidden path="id"/>
